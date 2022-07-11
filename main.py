@@ -1,11 +1,25 @@
 
 # Rotate an array a specified number of elements to the left. Throw an exception
 # if the shift amount is negative (don't rotate the list to the right).
-#
-# UNDER CONSTRUCTION
 
 def rotate_array(array, shift_amount):
-    return []
+
+    # Make sure shift_amount is a legal value (i.e. a positive integer).
+
+    if not isinstance(shift_amount, int):
+        raise ValueError("Shift amount must be a positive integer")
+    if shift_amount < 0:
+        raise ValueError("Shift amount must be a positive integer")
+
+    # Special-case the empty array since later we want to mod by the length.
+
+    if array == []:
+        return []
+
+    # Rotate the array the specified amount.
+
+    shift_amount = shift_amount % len(array)
+    return array[shift_amount:] + array[:shift_amount]
 
 
 # Pad out a string with spaces to achieve a specified length.
