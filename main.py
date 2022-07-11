@@ -40,38 +40,27 @@ def create_report(array, shift_amount, expected_output, alt_name = None):
 
 def test_array_rotator():
 
-    # "Softball" test cases for inputs the program is expected to handle normally.
+    # "Softball" test cases for basic functionality.
 
-    tests = [([1, 2, 3],        1,                  [2, 3, 1]),
-             ([5, 5, 5, 5, 6],  4,                  [6, 5, 5, 5, 5]),
-             ([5, 5, 5, 5, 6],  5,                  [5, 5, 5, 5, 6]),
-             ([0, 1, 4, 5],     10,                 [4, 5, 0, 1]),
-             ([1, 2, 3, 4],     0,                  [1, 2, 3, 4]),
-             ([],               4,                  []),
-             ([],               0,                  []),
-             ([9, 8, 1],        1000000,            [8, 1, 9])]
+    print(create_report([1, 2, 3],        1,        [2, 3, 1]))
+    print(create_report([5, 5, 5, 5, 6],  4,        [6, 5, 5, 5, 5]))
+    print(create_report([5, 5, 5, 5, 6],  5,        [5, 5, 5, 5, 6]))
+    print(create_report([0, 1, 4, 5],     10,       [4, 5, 0, 1]))
+    print(create_report([1, 2, 3, 4],     0,        [1, 2, 3, 4]))
+    print(create_report([],               4,        []))
+    print(create_report([],               0,        []))
 
+    # Stress tests for long arrays and large shift amounts.
+
+    long_list = [i for i in range(100000)]
+    long_list_shift = [99999] + [i for i in range(99999)]
+
+    print(create_report([9, 8, 1], 1000000,          [8, 1, 9]))
+    print(create_report(long_list, 0,                long_list,       alt_name = "<long_list>"))
+    print(create_report(long_list, len(long_list)-1, long_list_shift, alt_name = "<long_list>"))
 
     # todo: also create some tests that ensure an exception is raised when the
     # shift amount is negative or not an integer or when other stuff is weird
-
-    # Run the normal tests, and pretty-print the results.
-
-    for array, shift_amount, expected_output in tests:
-        print(create_report(array, shift_amount, expected_output))
-
-    # Run two tests on a very large input array, and pretty-print the results.
-    # These tests are separated because they require special pretty-printing
-
-
-    # Todo: add these "big list" tests which require special pretty-printing
-
-    long_list = [i for i in range(100000)]
-    long_list_rotate_right_one = [99999] + [i for i in range(99999)]
-
-    print(create_report(long_list, 0,                long_list, alt_name = "<long_list>"))
-    print(create_report(long_list, len(long_list)-1, long_list, alt_name = "<long_list>"))
-
 
 test_array_rotator()
 
