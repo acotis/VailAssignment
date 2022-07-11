@@ -22,7 +22,7 @@ def rotate_array(array, shift_amount):
     return array[shift_amount:] + array[:shift_amount]
 
 
-# Pad out a string with spaces to achieve a specified length.
+# Pretty-printing helpers.
 
 def pad_string(string, length):
     return string + " " * (length - len(string))
